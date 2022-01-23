@@ -12,7 +12,6 @@ int main(int argc, char *argv[]) {
     std::cout << "Please, enter a website url!";
     return 1;
   }
-
   std::stringstream result;
   curl::curl_ios<std::stringstream> writer(result);
   curl_easy easy(writer);
@@ -23,9 +22,10 @@ int main(int argc, char *argv[]) {
   try {
     easy.perform();
   } catch (curl_easy_exception &error) {
-    std::cerr << error.what() << std::endl;
+    std::cerr << error.what();
     return 2;
   }
   std::cout << result.str();
+
   return 0;
 }
